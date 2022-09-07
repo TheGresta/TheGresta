@@ -2,7 +2,7 @@
   <h1>Hi there 👋</h1>
 </div>
 <div id="header" align="center">
-  <h3>I develop projects with backend</h3>
+  <h3>Connecting the Dots</h3>
 </div>
 
 ___
