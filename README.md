@@ -11,9 +11,9 @@ ___
 <!-- Connect Buttons -->
 <div align="center" display="inline-block">
   <!-- Mail button -->
-  <a href="gresta.bilisim@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="GMail Badge"/></a>
+  <a href="mdinc.business@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="GMail Badge"/></a>
   <!-- Linkedin button -->
-  <a href="https://www.linkedin.com/in/mdinc2022/"><img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/></a>
+  <a href="https://www.linkedin.com/in/mdinc"><img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/></a>
   <!-- HackerRank button -->
   <a href="https://www.hackerrank.com/dinc_mczp"><img src="https://img.shields.io/badge/-Hackerrank-2EC866?style=for-the-badge&logo=HackerRank&logoColor=white" alt="HackerRank Badge"/></a>
 </div>
