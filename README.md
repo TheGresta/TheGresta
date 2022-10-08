@@ -37,6 +37,8 @@ ___
   <a href=""><img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" title="mysql" alt="mysql" width="60" height="60"/></a>&nbsp;
   <!-- Postgresql -->
   <a href=""><img src="https://github.com/devicons/devicon/blob/master/icons/postgresql/postgresql-original-wordmark.svg" title="postgresql" alt="postgresql" width="60" height="60"/></a>&nbsp;
+  <!-- MongoDb -->
+  <a href=""><img src="https://github.com/devicons/devicon/blob/master/icons/mongodb/mongodb-original-wordmark.svg" title="mongodb" alt="mongodb" width="60" height="60"/></a>&nbsp;
   <!-- Git -->
   <a href=""><img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" title="git" alt="git" width="60" height="60"/></a>&nbsp;
   <!-- Github -->
