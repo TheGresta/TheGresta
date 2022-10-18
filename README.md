@@ -41,8 +41,6 @@ ___
   <a href=""><img src="https://github.com/devicons/devicon/blob/master/icons/mongodb/mongodb-original-wordmark.svg" title="mongodb" alt="mongodb" width="60" height="60"/></a>&nbsp;
   <!-- Git -->
   <a href=""><img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" title="git" alt="git" width="60" height="60"/></a>&nbsp;
-  <!-- Github -->
-  <a href=""><img src="https://github.com/devicons/devicon/blob/master/icons/github/github-original-wordmark.svg" title="github" alt="github" width="60" height="60"/></a>&nbsp;  
   <!-- Docker -->
   <a href=""><img src="https://github.com/devicons/devicon/blob/master/icons/docker/docker-original-wordmark.svg" title="docker" alt="docker" width="60" height="60"/></a>&nbsp;  
 </div>
