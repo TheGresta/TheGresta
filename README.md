@@ -64,16 +64,15 @@ ___
 </div>
 
 ### :fire: My Stats :
-
-<ul align="center">
-  <li><img class="img" src="https://github-readme-stats.vercel.app/api/top-langs/?username=TheGresta&layout=compact&langs_count=8&theme=vision-friendly-dark"></li>
-
-  <li><img src="https://user-images.githubusercontent.com/74189776/188946760-5f40b307-abcd-4af8-aacf-60f6b0df3713.gif" alt="Dino_non-birthday_version"/></li>
-
-  <li><img class="img" src="http://github-readme-streak-stats.herokuapp.com?user=TheGresta&theme=dark&background=000000"></li>
+<div align="center">
+  <div><img class="img" src="https://github-readme-stats.vercel.app/api/top-langs/?username=TheGresta&layout=compact&langs_count=8&theme=vision-friendly-dark"></div>
   
-  <li><img src="https://github.com/TheGresta/TheGresta/blob/output/github-contribution-grid-snake.gif" alt="snake_gif"/></li>
-</ul>
+  <div><img src="https://user-images.githubusercontent.com/74189776/188946760-5f40b307-abcd-4af8-aacf-60f6b0df3713.gif" alt="Dino_non-birthday_version"/></div>
+  
+  <div><img class="img" src="http://github-readme-streak-stats.herokuapp.com?user=TheGresta&theme=dark&background=000000"></div>
+  
+  <div><img src="https://github.com/TheGresta/TheGresta/blob/output/github-contribution-grid-snake.gif" alt="snake_gif"/></div>
+</div>
 
 <!--
 **TheGresta/TheGresta** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
