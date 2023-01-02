@@ -69,6 +69,8 @@ ___
   
   <div><img src="https://user-images.githubusercontent.com/74189776/188946760-5f40b307-abcd-4af8-aacf-60f6b0df3713.gif" alt="Dino_non-birthday_version"/></div>
   
+  <div><img class="img" src="https://github-readme-stats.vercel.app/api?username=TheGresta&show_icons=true&theme=gruvbox"></div>
+  
   <div><img class="img" src="http://github-readme-streak-stats.herokuapp.com?user=TheGresta&theme=dark&background=000000"></div>
   
   <div><img src="https://github.com/TheGresta/TheGresta/blob/output/github-contribution-grid-snake.gif" alt="snake_gif"/></div>
