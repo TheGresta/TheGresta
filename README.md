@@ -12,8 +12,6 @@ ___
 <div align="center" display="inline-block">
   <!-- Linkedin button -->
   <a href="https://www.linkedin.com/in/mdinc"><img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/></a>
-  <!-- HackerRank button -->
-  <a href="https://www.hackerrank.com/dinc_mczp"><img src="https://img.shields.io/badge/-Hackerrank-2EC866?style=for-the-badge&logo=HackerRank&logoColor=white" alt="HackerRank Badge"/></a>
 </div>
 
 ### :hammer_and_wrench: Languages and Tools :
