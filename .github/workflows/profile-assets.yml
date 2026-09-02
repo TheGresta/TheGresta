@@ -44,8 +44,6 @@ jobs:
             totalIssueContributions
             totalRepositoriesWithContributedCommits
             restrictedContributionsCount
-            startedAt
-            endedAt
             contributionCalendar{totalContributions}}}}
           GQL
 
@@ -79,9 +77,10 @@ jobs:
           # publicised in profile settings, even though the totals still include them,
           # so it can confirm private work but never rule it out. Report the period
           # covered instead, which is always true.
-          FROM=$(date -u -d "$(g '.startedAt')" +'%b %Y')
-          TO=$(date -u -d "$(g '.endedAt')" +'%b %Y')
-          FOOT="$FROM &#8211; $TO"
+          # Derived from the clock rather than queried: contributionsCollection defaults
+          # to exactly the trailing 12 months, and asking for extra fields risks the
+          # whole query erroring out and silently keeping the previous card.
+          FOOT="$(date -u -d '1 year ago' +'%b %Y') &#8211; $(date -u +'%b %Y')"
 
           fmt() { printf '%s' "$1" | sed -E ':a;s/([0-9])([0-9]{3})($|,)/\1,\2\3/;ta'; }
 
