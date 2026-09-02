@@ -84,23 +84,30 @@ jobs:
 
           fmt() { printf '%s' "$1" | sed -E ':a;s/([0-9])([0-9]{3})($|,)/\1,\2\3/;ta'; }
 
+          # Geometry, type sizes and the border are copied from the summary-cards
+          # language card so the two sit side by side as a matched pair. The counts
+          # are balanced on the right by a badge, mirroring that card's donut.
           render() { # 1=file 2=bg 3=stroke 4=title 5=label 6=value 7=foot
             cat > "dist/$1" <<SVG
-          <svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" role="img" aria-label="Activity over the last 12 months">
-            <rect x="0.5" y="0.5" width="339" height="199" rx="6" fill="$2" stroke="$3"/>
-            <g font-family="Segoe UI, Ubuntu, Helvetica, Arial, sans-serif">
-              <text x="24" y="36" font-size="19" font-weight="600" fill="$4">Last 12 Months</text>
-              <text x="24" y="72" font-size="14" fill="$5">Contributions</text>
-              <text x="316" y="72" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$CONTRIB")</text>
-              <text x="24" y="97" font-size="14" fill="$5">Commits</text>
-              <text x="316" y="97" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$COMMITS")</text>
-              <text x="24" y="122" font-size="14" fill="$5">Pull requests</text>
-              <text x="316" y="122" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$PRS")</text>
-              <text x="24" y="147" font-size="14" fill="$5">Code reviews</text>
-              <text x="316" y="147" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$REVIEWS")</text>
-              <text x="24" y="172" font-size="14" fill="$5">Repositories</text>
-              <text x="316" y="172" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$REPOS")</text>
-              <text x="24" y="191" font-size="10" fill="$7">$FOOT</text>
+          <svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" role="img" aria-label="Activity over the last 12 months: $CONTRIB contributions">
+            <rect x="1" y="1" rx="5" ry="5" width="338" height="198" fill="$2" stroke="$3" stroke-width="1"/>
+            <g font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif">
+              <text x="30" y="40" font-size="22" fill="$4">Last 12 Months</text>
+
+              <text x="30" y="76" font-size="14" fill="$5">Commits</text>
+              <text x="196" y="76" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$COMMITS")</text>
+              <text x="30" y="101" font-size="14" fill="$5">Pull requests</text>
+              <text x="196" y="101" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$PRS")</text>
+              <text x="30" y="126" font-size="14" fill="$5">Code reviews</text>
+              <text x="196" y="126" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$REVIEWS")</text>
+              <text x="30" y="151" font-size="14" fill="$5">Repositories</text>
+              <text x="196" y="151" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$REPOS")</text>
+
+              <circle cx="262" cy="97" r="45" fill="none" stroke="$4" stroke-width="6"/>
+              <text x="262" y="97" font-size="24" font-weight="600" fill="$6" text-anchor="middle">$(fmt "$CONTRIB")</text>
+              <text x="262" y="117" font-size="11" fill="$5" text-anchor="middle">contributions</text>
+
+              <text x="30" y="178" font-size="11" fill="$7">$FOOT</text>
             </g>
           </svg>
           SVG
@@ -172,8 +179,8 @@ jobs:
 
           snapshot "$cards/most-commit-language?username=$USER_NAME&theme=github_dark" langs-dark.svg
           snapshot "$cards/most-commit-language?username=$USER_NAME&theme=default"     langs-light.svg
-          snapshot "$streak?user=$USER_NAME&hide_border=true&border_radius=8&background=0D1117&stroke=2E343B&ring=0366D6&fire=0366D6&currStreakNum=8B949E&sideNums=8B949E&currStreakLabel=0366D6&sideLabels=8B949E&dates=77909C" streak-dark.svg
-          snapshot "$streak?user=$USER_NAME&hide_border=true&border_radius=8&background=FFFFFF&stroke=E4E2E2&ring=586E75&fire=586E75&currStreakNum=586E75&sideNums=586E75&currStreakLabel=586E75&sideLabels=586E75&dates=8A9BA0" streak-light.svg
+          snapshot "$streak?user=$USER_NAME&border_radius=5&background=0D1117&border=2E343B&stroke=2E343B&ring=0366D6&fire=0366D6&currStreakNum=C9D1D9&sideNums=C9D1D9&currStreakLabel=0366D6&sideLabels=77909C&dates=77909C" streak-dark.svg
+          snapshot "$streak?user=$USER_NAME&border_radius=5&background=FFFFFF&border=E4E2E2&stroke=E4E2E2&ring=586E75&fire=586E75&currStreakNum=24292F&sideNums=24292F&currStreakLabel=586E75&sideLabels=586E75&dates=8A9BA0" streak-light.svg
 
           snapshot "$capsule?type=waving&color=0:512BD4,100:2E1065&height=180&section=header&text=Din%C3%A7er%20Din%C3%A7&fontSize=44&fontColor=ffffff&fontAlignY=34&desc=.NET%20Backend%20Engineer%20%C2%B7%20Distributed%20Systems&descAlignY=54&descSize=16" header.svg
           snapshot "$capsule?type=waving&color=0:2E1065,100:512BD4&height=120&section=footer" footer.svg
