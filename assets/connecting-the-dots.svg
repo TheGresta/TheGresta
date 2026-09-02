@@ -1,75 +1,124 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="150" viewBox="0 0 840 150" role="img" aria-label="Connecting the Dots">
-  <title>Connecting the Dots</title>
-  <defs>
-    <linearGradient id="ctd" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#7C3AED"/>
-      <stop offset="1" stop-color="#C084FC"/>
-    </linearGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="190" viewBox="0 0 840 190" role="img" aria-label="Connecting the Dots">
+  <title>Connecting the Dots — shortest path</title>
+  <desc>Dijkstra explores a weighted graph, then the cheapest route lights up.</desc>
+  <defs><linearGradient id="ctd" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#E879F9"/>
+  </linearGradient></defs>
   <style>
-    /* stroke-dashoffset starts at the path length inline, so the keyframe only
-       needs a target; this avoids var() inside @keyframes. */
-    .edge{stroke:url(#ctd);stroke-width:1.6;fill:none;opacity:.55;animation:ctd-draw .9s ease-out both}
-    /* Only opacity is animated: CSS animation of the SVG r property is not
-       dependable across browsers, so nodes keep a fixed radius. */
-    .node{fill:#8B5CF6;opacity:0;animation:ctd-pop .5s ease-out both}
-    /* The halo does animate r. Where that is unsupported it still pulses
-       opacity at a fixed radius, which degrades cleanly. */
-    .halo{fill:#8B5CF6;opacity:0;animation:ctd-pulse 2.8s ease-in-out infinite}
-    .pkt{fill:#C084FC;opacity:0}
-    .tag{font-family:'Segoe UI',Ubuntu,'Helvetica Neue',Sans-Serif;font-size:30px;
-         font-weight:600;letter-spacing:3.5px;fill:url(#ctd);
-         animation:ctd-fade .9s ease-out 1.5s both}
-    @keyframes ctd-draw{to{stroke-dashoffset:0}}
-    @keyframes ctd-pop{to{opacity:1}}
-    @keyframes ctd-pulse{0%,100%{opacity:0;r:4.5}50%{opacity:.22;r:11}}
-    @keyframes ctd-fade{from{opacity:0}to{opacity:1}}
-    @keyframes ctd-fl1{0%{opacity:0;transform:translate(55px,58px)}0.01%{opacity:1;transform:translate(55px,58px)}12.00%{opacity:1;transform:translate(145px,30px)}12.01%,100%{opacity:0;transform:translate(145px,30px)}}
-    @keyframes ctd-fl2{0%,12.00%{opacity:0;transform:translate(145px,30px)}12.01%{opacity:1;transform:translate(145px,30px)}24.00%{opacity:1;transform:translate(235px,66px)}24.01%,100%{opacity:0;transform:translate(235px,66px)}}
-    @keyframes ctd-fl3{0%,24.00%{opacity:0;transform:translate(235px,66px)}24.01%{opacity:1;transform:translate(235px,66px)}36.00%{opacity:1;transform:translate(330px,34px)}36.01%,100%{opacity:0;transform:translate(330px,34px)}}
-    @keyframes ctd-fl4{0%,36.00%{opacity:0;transform:translate(330px,34px)}36.01%{opacity:1;transform:translate(330px,34px)}48.00%{opacity:1;transform:translate(420px,62px)}48.01%,100%{opacity:0;transform:translate(420px,62px)}}
-    @keyframes ctd-fl5{0%,48.00%{opacity:0;transform:translate(420px,62px)}48.01%{opacity:1;transform:translate(420px,62px)}60.00%{opacity:1;transform:translate(512px,28px)}60.01%,100%{opacity:0;transform:translate(512px,28px)}}
-    @keyframes ctd-fl6{0%,60.00%{opacity:0;transform:translate(512px,28px)}60.01%{opacity:1;transform:translate(512px,28px)}72.00%{opacity:1;transform:translate(605px,64px)}72.01%,100%{opacity:0;transform:translate(605px,64px)}}
-    @keyframes ctd-fl7{0%,72.00%{opacity:0;transform:translate(605px,64px)}72.01%{opacity:1;transform:translate(605px,64px)}84.00%{opacity:1;transform:translate(700px,32px)}84.01%,100%{opacity:0;transform:translate(700px,32px)}}
-    @keyframes ctd-fl8{0%,84.00%{opacity:0;transform:translate(700px,32px)}84.01%{opacity:1;transform:translate(700px,32px)}96.00%{opacity:1;transform:translate(788px,60px)}96.01%,100%{opacity:0;transform:translate(788px,60px)}}
+    /* Every animation shares one 9s loop and returns to its starting state,
+       so the cycle repeats seamlessly. Only opacity and transform are
+       animated; CSS animation of the SVG r property is not dependable. */
+    .edge{stroke:#7C3AED;stroke-width:1.5;fill:none;opacity:0;animation:ctd-in 9s ease-out infinite}
+    .wt{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-size:10px;fill:#A855F7;opacity:0;animation:ctd-inw 9s ease-out infinite}
+    .node{fill:#7C3AED;opacity:0;animation:ctd-inn 9s ease-out infinite}
+    .exp{fill:none;stroke:#A855F7;stroke-width:1.5;opacity:0}
+    .pe{stroke:url(#ctd);stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+    .pn{fill:#E879F9;opacity:0}
+    .pkt{fill:#F5D0FE;opacity:0}
+    .tag{font-family:'Segoe UI',Ubuntu,'Helvetica Neue',Sans-Serif;font-size:30px;font-weight:600;
+         letter-spacing:3.5px;fill:url(#ctd);opacity:0;animation:ctd-tag 9s ease-out infinite}
+    .cap{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-size:11px;fill:#A855F7;
+         opacity:0;animation:ctd-cap 9s ease-out infinite}
+    @keyframes ctd-in{0%{opacity:0}5%,93%{opacity:.30}100%{opacity:0}}
+    @keyframes ctd-inw{0%{opacity:0}5%,93%{opacity:.55}100%{opacity:0}}
+    @keyframes ctd-inn{0%{opacity:0}5%,93%{opacity:.45}100%{opacity:0}}
+    @keyframes ctd-tag{0%,12%{opacity:0}20%,93%{opacity:1}100%{opacity:0}}
+    @keyframes ctd-cap{0%,55%{opacity:0}60%,93%{opacity:.5}100%{opacity:0}}
+    @keyframes ctd-e1{0%,10.00%{opacity:0;transform:scale(.4)}12.20%{opacity:.9;transform:scale(1)}19.00%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-e3{0%,12.83%{opacity:0;transform:scale(.4)}15.03%{opacity:.9;transform:scale(1)}21.83%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-e2{0%,15.67%{opacity:0;transform:scale(.4)}17.87%{opacity:.9;transform:scale(1)}24.67%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-e5{0%,18.50%{opacity:0;transform:scale(.4)}20.70%{opacity:.9;transform:scale(1)}27.50%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-e4{0%,21.33%{opacity:0;transform:scale(.4)}23.53%{opacity:.9;transform:scale(1)}30.33%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-e6{0%,24.17%{opacity:0;transform:scale(.4)}26.37%{opacity:.9;transform:scale(1)}33.17%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-e7{0%,27.00%{opacity:0;transform:scale(.4)}29.20%{opacity:.9;transform:scale(1)}36.00%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-e8{0%,29.83%{opacity:0;transform:scale(.4)}32.03%{opacity:.9;transform:scale(1)}38.83%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-e10{0%,32.67%{opacity:0;transform:scale(.4)}34.87%{opacity:.9;transform:scale(1)}41.67%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-e9{0%,35.50%{opacity:0;transform:scale(.4)}37.70%{opacity:.9;transform:scale(1)}44.50%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-e12{0%,38.33%{opacity:0;transform:scale(.4)}40.53%{opacity:.9;transform:scale(1)}47.33%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-e11{0%,41.17%{opacity:0;transform:scale(.4)}43.37%{opacity:.9;transform:scale(1)}50.17%,100%{opacity:0;transform:scale(1.35)}}
+    @keyframes ctd-pe{0%,46%{opacity:0;stroke-dashoffset:761.2px}47%{opacity:1;stroke-dashoffset:761.2px}57%,93%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+    @keyframes ctd-p1{0%,57.00%{opacity:0}58.50%,93%{opacity:1}100%{opacity:0}}
+    @keyframes ctd-p3{0%,57.80%{opacity:0}59.30%,93%{opacity:1}100%{opacity:0}}
+    @keyframes ctd-p5{0%,58.60%{opacity:0}60.10%,93%{opacity:1}100%{opacity:0}}
+    @keyframes ctd-p7{0%,59.40%{opacity:0}60.90%,93%{opacity:1}100%{opacity:0}}
+    @keyframes ctd-p10{0%,60.20%{opacity:0}61.70%,93%{opacity:1}100%{opacity:0}}
+    @keyframes ctd-p12{0%,61.00%{opacity:0}62.50%,93%{opacity:1}100%{opacity:0}}
+    @keyframes ctd-k1{0%,60.00%{opacity:0;transform:translate(55px,80px)}60.01%{opacity:1;transform:translate(55px,80px)}64.40%{opacity:1;transform:translate(200px,125px)}64.41%,100%{opacity:0;transform:translate(200px,125px)}}
+    @keyframes ctd-k2{0%,64.40%{opacity:0;transform:translate(200px,125px)}64.41%{opacity:1;transform:translate(200px,125px)}68.80%{opacity:1;transform:translate(350px,80px)}68.81%,100%{opacity:0;transform:translate(350px,80px)}}
+    @keyframes ctd-k3{0%,68.80%{opacity:0;transform:translate(350px,80px)}68.81%{opacity:1;transform:translate(350px,80px)}73.20%{opacity:1;transform:translate(510px,35px)}73.21%,100%{opacity:0;transform:translate(510px,35px)}}
+    @keyframes ctd-k4{0%,73.20%{opacity:0;transform:translate(510px,35px)}73.21%{opacity:1;transform:translate(510px,35px)}77.60%{opacity:1;transform:translate(660px,80px)}77.61%,100%{opacity:0;transform:translate(660px,80px)}}
+    @keyframes ctd-k5{0%,77.60%{opacity:0;transform:translate(660px,80px)}77.61%{opacity:1;transform:translate(660px,80px)}82.00%{opacity:1;transform:translate(790px,80px)}82.01%,100%{opacity:0;transform:translate(790px,80px)}}
   </style>
-  <path class="edge" d="M55 58 L145 30" style="stroke-dasharray:94.3;stroke-dashoffset:94.3;animation-delay:0.00s"/>
-  <path class="edge" d="M145 30 L235 66" style="stroke-dasharray:96.9;stroke-dashoffset:96.9;animation-delay:0.10s"/>
-  <path class="edge" d="M235 66 L330 34" style="stroke-dasharray:100.2;stroke-dashoffset:100.2;animation-delay:0.20s"/>
-  <path class="edge" d="M330 34 L420 62" style="stroke-dasharray:94.3;stroke-dashoffset:94.3;animation-delay:0.30s"/>
-  <path class="edge" d="M420 62 L512 28" style="stroke-dasharray:98.1;stroke-dashoffset:98.1;animation-delay:0.40s"/>
-  <path class="edge" d="M512 28 L605 64" style="stroke-dasharray:99.7;stroke-dashoffset:99.7;animation-delay:0.50s"/>
-  <path class="edge" d="M605 64 L700 32" style="stroke-dasharray:100.2;stroke-dashoffset:100.2;animation-delay:0.60s"/>
-  <path class="edge" d="M700 32 L788 60" style="stroke-dasharray:92.3;stroke-dashoffset:92.3;animation-delay:0.70s"/>
-  <path class="edge" d="M55 58 L235 66" style="stroke-dasharray:180.2;stroke-dashoffset:180.2;animation-delay:0.80s"/>
-  <path class="edge" d="M235 66 L420 62" style="stroke-dasharray:185.0;stroke-dashoffset:185.0;animation-delay:0.90s"/>
-  <path class="edge" d="M420 62 L605 64" style="stroke-dasharray:185.0;stroke-dashoffset:185.0;animation-delay:1.00s"/>
-  <path class="edge" d="M605 64 L788 60" style="stroke-dasharray:183.0;stroke-dashoffset:183.0;animation-delay:1.10s"/>
-  <circle class="halo" cx="55" cy="58" r="4.5" style="animation-delay:0.25s"/>
-  <circle class="node" cx="55" cy="58" r="4.5" style="animation-delay:0.00s"/>
-  <circle class="halo" cx="145" cy="30" r="4.5" style="animation-delay:0.50s"/>
-  <circle class="node" cx="145" cy="30" r="4.5" style="animation-delay:0.10s"/>
-  <circle class="halo" cx="235" cy="66" r="4.5" style="animation-delay:0.75s"/>
-  <circle class="node" cx="235" cy="66" r="4.5" style="animation-delay:0.20s"/>
-  <circle class="halo" cx="330" cy="34" r="4.5" style="animation-delay:1.00s"/>
-  <circle class="node" cx="330" cy="34" r="4.5" style="animation-delay:0.30s"/>
-  <circle class="halo" cx="420" cy="62" r="4.5" style="animation-delay:1.25s"/>
-  <circle class="node" cx="420" cy="62" r="4.5" style="animation-delay:0.40s"/>
-  <circle class="halo" cx="512" cy="28" r="4.5" style="animation-delay:1.50s"/>
-  <circle class="node" cx="512" cy="28" r="4.5" style="animation-delay:0.50s"/>
-  <circle class="halo" cx="605" cy="64" r="4.5" style="animation-delay:1.75s"/>
-  <circle class="node" cx="605" cy="64" r="4.5" style="animation-delay:0.60s"/>
-  <circle class="halo" cx="700" cy="32" r="4.5" style="animation-delay:2.00s"/>
-  <circle class="node" cx="700" cy="32" r="4.5" style="animation-delay:0.70s"/>
-  <circle class="halo" cx="788" cy="60" r="4.5" style="animation-delay:2.25s"/>
-  <circle class="node" cx="788" cy="60" r="4.5" style="animation-delay:0.80s"/>
-  <circle class="pkt" r="3.4" style="animation:ctd-fl1 4.4s linear infinite"/>
-  <circle class="pkt" r="3.4" style="animation:ctd-fl2 4.4s linear infinite"/>
-  <circle class="pkt" r="3.4" style="animation:ctd-fl3 4.4s linear infinite"/>
-  <circle class="pkt" r="3.4" style="animation:ctd-fl4 4.4s linear infinite"/>
-  <circle class="pkt" r="3.4" style="animation:ctd-fl5 4.4s linear infinite"/>
-  <circle class="pkt" r="3.4" style="animation:ctd-fl6 4.4s linear infinite"/>
-  <circle class="pkt" r="3.4" style="animation:ctd-fl7 4.4s linear infinite"/>
-  <circle class="pkt" r="3.4" style="animation:ctd-fl8 4.4s linear infinite"/>
-  <text class="tag" x="420" y="128" text-anchor="middle">Connecting the Dots</text>
+  <line class="edge" x1="55" y1="80" x2="200" y2="35"/>
+  <text class="wt" x="128" y="54" text-anchor="middle">4</text>
+  <line class="edge" x1="55" y1="80" x2="200" y2="125"/>
+  <text class="wt" x="128" y="98" text-anchor="middle">2</text>
+  <line class="edge" x1="200" y1="35" x2="350" y2="30"/>
+  <text class="wt" x="275" y="28" text-anchor="middle">3</text>
+  <line class="edge" x1="200" y1="35" x2="350" y2="80"/>
+  <text class="wt" x="275" y="54" text-anchor="middle">6</text>
+  <line class="edge" x1="200" y1="125" x2="350" y2="80"/>
+  <text class="wt" x="275" y="98" text-anchor="middle">3</text>
+  <line class="edge" x1="200" y1="125" x2="350" y2="130"/>
+  <text class="wt" x="275" y="124" text-anchor="middle">5</text>
+  <line class="edge" x1="350" y1="30" x2="510" y2="35"/>
+  <text class="wt" x="430" y="28" text-anchor="middle">5</text>
+  <line class="edge" x1="350" y1="80" x2="510" y2="35"/>
+  <text class="wt" x="430" y="54" text-anchor="middle">2</text>
+  <line class="edge" x1="350" y1="80" x2="510" y2="125"/>
+  <text class="wt" x="430" y="98" text-anchor="middle">4</text>
+  <line class="edge" x1="350" y1="130" x2="510" y2="125"/>
+  <text class="wt" x="430" y="124" text-anchor="middle">3</text>
+  <line class="edge" x1="510" y1="35" x2="660" y2="30"/>
+  <text class="wt" x="585" y="28" text-anchor="middle">4</text>
+  <line class="edge" x1="510" y1="35" x2="660" y2="80"/>
+  <text class="wt" x="585" y="54" text-anchor="middle">3</text>
+  <line class="edge" x1="510" y1="125" x2="660" y2="80"/>
+  <text class="wt" x="585" y="98" text-anchor="middle">2</text>
+  <line class="edge" x1="510" y1="125" x2="660" y2="130"/>
+  <text class="wt" x="585" y="124" text-anchor="middle">6</text>
+  <line class="edge" x1="660" y1="30" x2="790" y2="80"/>
+  <text class="wt" x="725" y="51" text-anchor="middle">5</text>
+  <line class="edge" x1="660" y1="80" x2="790" y2="80"/>
+  <text class="wt" x="725" y="76" text-anchor="middle">3</text>
+  <line class="edge" x1="660" y1="130" x2="790" y2="80"/>
+  <text class="wt" x="725" y="101" text-anchor="middle">4</text>
+  <path class="pe" d="M 55 80 L 200 125 L 350 80 L 510 35 L 660 80 L 790 80" style="stroke-dasharray:761.2;animation:ctd-pe 9s ease-in-out infinite"/>
+  <circle class="exp" cx="55" cy="80" r="12" style="transform-origin:55px 80px;animation:ctd-e1 9s ease-out infinite"/>
+  <circle class="node" cx="55" cy="80" r="5"/>
+  <circle class="exp" cx="200" cy="35" r="12" style="transform-origin:200px 35px;animation:ctd-e2 9s ease-out infinite"/>
+  <circle class="node" cx="200" cy="35" r="5"/>
+  <circle class="exp" cx="200" cy="125" r="12" style="transform-origin:200px 125px;animation:ctd-e3 9s ease-out infinite"/>
+  <circle class="node" cx="200" cy="125" r="5"/>
+  <circle class="exp" cx="350" cy="30" r="12" style="transform-origin:350px 30px;animation:ctd-e4 9s ease-out infinite"/>
+  <circle class="node" cx="350" cy="30" r="5"/>
+  <circle class="exp" cx="350" cy="80" r="12" style="transform-origin:350px 80px;animation:ctd-e5 9s ease-out infinite"/>
+  <circle class="node" cx="350" cy="80" r="5"/>
+  <circle class="exp" cx="350" cy="130" r="12" style="transform-origin:350px 130px;animation:ctd-e6 9s ease-out infinite"/>
+  <circle class="node" cx="350" cy="130" r="5"/>
+  <circle class="exp" cx="510" cy="35" r="12" style="transform-origin:510px 35px;animation:ctd-e7 9s ease-out infinite"/>
+  <circle class="node" cx="510" cy="35" r="5"/>
+  <circle class="exp" cx="510" cy="125" r="12" style="transform-origin:510px 125px;animation:ctd-e8 9s ease-out infinite"/>
+  <circle class="node" cx="510" cy="125" r="5"/>
+  <circle class="exp" cx="660" cy="30" r="12" style="transform-origin:660px 30px;animation:ctd-e9 9s ease-out infinite"/>
+  <circle class="node" cx="660" cy="30" r="5"/>
+  <circle class="exp" cx="660" cy="80" r="12" style="transform-origin:660px 80px;animation:ctd-e10 9s ease-out infinite"/>
+  <circle class="node" cx="660" cy="80" r="5"/>
+  <circle class="exp" cx="660" cy="130" r="12" style="transform-origin:660px 130px;animation:ctd-e11 9s ease-out infinite"/>
+  <circle class="node" cx="660" cy="130" r="5"/>
+  <circle class="exp" cx="790" cy="80" r="12" style="transform-origin:790px 80px;animation:ctd-e12 9s ease-out infinite"/>
+  <circle class="node" cx="790" cy="80" r="5"/>
+  <circle class="pn" cx="55" cy="80" r="6.5" style="animation:ctd-p1 9s ease-out infinite"/>
+  <circle class="pn" cx="200" cy="125" r="6.5" style="animation:ctd-p3 9s ease-out infinite"/>
+  <circle class="pn" cx="350" cy="80" r="6.5" style="animation:ctd-p5 9s ease-out infinite"/>
+  <circle class="pn" cx="510" cy="35" r="6.5" style="animation:ctd-p7 9s ease-out infinite"/>
+  <circle class="pn" cx="660" cy="80" r="6.5" style="animation:ctd-p10 9s ease-out infinite"/>
+  <circle class="pn" cx="790" cy="80" r="6.5" style="animation:ctd-p12 9s ease-out infinite"/>
+  <circle class="pkt" r="4.2" style="animation:ctd-k1 9s linear infinite"/>
+  <circle class="pkt" r="4.2" style="animation:ctd-k2 9s linear infinite"/>
+  <circle class="pkt" r="4.2" style="animation:ctd-k3 9s linear infinite"/>
+  <circle class="pkt" r="4.2" style="animation:ctd-k4 9s linear infinite"/>
+  <circle class="pkt" r="4.2" style="animation:ctd-k5 9s linear infinite"/>
+  <text class="tag" x="420" y="176" text-anchor="middle">Connecting the Dots</text>
+  <text class="cap" x="810" y="176" text-anchor="end">dijkstra &#183; cost 13</text>
 </svg>
