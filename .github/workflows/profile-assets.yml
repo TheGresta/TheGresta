@@ -1,0 +1,98 @@
+name: Generate profile assets
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+# The snake, the header art and the stat cards are all published to the same `output`
+# branch in a single push. Two workflows publishing there separately would wipe each
+# other's files, because the publish step replaces the whole branch.
+concurrency:
+  group: profile-assets
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # SNAKE_TOKEN (a classic PAT with `read:user` + `repo`) makes the contribution
+      # calendar include private and organisation commits. Without it this falls back to
+      # the ephemeral Actions token, which can only see public contributions.
+      - name: Generate contribution-grid snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          github_token: ${{ secrets.SNAKE_TOKEN || github.token }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+      # These card services run on free hosting and go down periodically — the old
+      # github-readme-stats instance currently returns 503, and github-profile-trophy
+      # returns 402. Snapshotting the SVGs into the repo means the README renders from
+      # files we control; if a fetch fails we keep the last good copy rather than
+      # publishing a broken image.
+      - name: Snapshot cards and header art
+        env:
+          USER_NAME: ${{ github.repository_owner }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -u
+          mkdir -p dist
+          failed=0
+
+          snapshot() {
+            url="$1"; name="$2"
+            if curl -sfL --max-time 30 "$url" -o "dist/$name.tmp" \
+               && [ "$(wc -c < "dist/$name.tmp")" -gt 500 ]; then
+              mv "dist/$name.tmp" "dist/$name"
+              echo "fresh      $name"
+              return
+            fi
+            rm -f "dist/$name.tmp"
+            if curl -sfL --max-time 30 \
+                 "https://raw.githubusercontent.com/$REPO/output/$name" -o "dist/$name"; then
+              echo "kept stale $name"
+            else
+              echo "MISSING    $name"
+              failed=1
+            fi
+          }
+
+          cards="https://github-profile-summary-cards.vercel.app/api/cards"
+          streak="https://streak-stats.demolab.com"
+          capsule="https://capsule-render.vercel.app/api"
+          typing="https://readme-typing-svg.demolab.com"
+
+          snapshot "$cards/stats?username=$USER_NAME&theme=github_dark" stats-dark.svg
+          snapshot "$cards/stats?username=$USER_NAME&theme=default"     stats-light.svg
+          snapshot "$cards/most-commit-language?username=$USER_NAME&theme=github_dark" langs-dark.svg
+          snapshot "$cards/most-commit-language?username=$USER_NAME&theme=default"     langs-light.svg
+          snapshot "$cards/productive-time?username=$USER_NAME&theme=github_dark&utcOffset=3" productive-dark.svg
+          snapshot "$cards/productive-time?username=$USER_NAME&theme=default&utcOffset=3"     productive-light.svg
+          snapshot "$streak?user=$USER_NAME&theme=dark&hide_border=true&background=0D1117&border_radius=8" streak-dark.svg
+          snapshot "$streak?user=$USER_NAME&theme=default&hide_border=true&border_radius=8"                streak-light.svg
+
+          snapshot "$capsule?type=waving&color=0:512BD4,100:2E1065&height=180&section=header&text=Din%C3%A7er%20Din%C3%A7&fontSize=44&fontColor=ffffff&fontAlignY=34&desc=.NET%20Backend%20Engineer%20%C2%B7%20Distributed%20Systems&descAlignY=54&descSize=16" header.svg
+          snapshot "$capsule?type=waving&color=0:2E1065,100:512BD4&height=120&section=footer" footer.svg
+          snapshot "$typing?font=JetBrains+Mono&weight=600&size=20&duration=3000&pause=800&color=8B5CF6&center=true&vCenter=true&width=600&lines=.NET+10+%C2%B7+C%23+%C2%B7+ASP.NET+Core;Event-driven+services+%26+messaging;PostgreSQL+%C2%B7+Redis+%C2%B7+Elasticsearch;Docker+%C2%B7+Kubernetes+%C2%B7+AWS" typing.svg
+
+          echo "--- dist ---"
+          ls -l dist
+          exit $failed
+
+      - name: Publish to the output branch
+        uses: crazy-max/ghaction-github-pages@v5
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
