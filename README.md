@@ -56,11 +56,7 @@
 ### Messaging &amp; Background Work
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg" title="RabbitMQ" alt="RabbitMQ" width="48" height="48" />&nbsp;&nbsp;
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-light.svg" />
-  <img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-dark.svg" title="Apache Kafka" alt="Apache Kafka" width="48" height="48" />
-</picture>&nbsp;&nbsp;
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-light.svg" /><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-dark.svg" title="Apache Kafka" alt="Apache Kafka" width="48" height="48" /></picture>&nbsp;&nbsp;
 <img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/masstransit.png" title="MassTransit" alt="MassTransit" width="48" height="48" />&nbsp;&nbsp;
 <img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/wolverine.png" title="Wolverine" alt="Wolverine" width="48" height="48" />&nbsp;&nbsp;
 <img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/hangfire.png" title="Hangfire" alt="Hangfire" width="48" height="48" />
