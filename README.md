@@ -38,63 +38,63 @@
 
 ### Core &amp; Runtime
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-plain.svg" title=".NET 10" alt=".NET 10" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" title="C#" alt="C#" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" title="ASP.NET Core" alt="ASP.NET Core" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grpc/grpc-original.svg" title="gRPC" alt="gRPC" width="48" height="48" />
+<a href="https://dotnet.microsoft.com/" title=".NET 10"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-plain.svg" alt=".NET 10" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://learn.microsoft.com/en-us/dotnet/csharp/" title="C#"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://learn.microsoft.com/en-us/aspnet/core/" title="ASP.NET Core"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" alt="ASP.NET Core" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://grpc.io/" title="gRPC"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grpc/grpc-original.svg" alt="gRPC" width="48" height="48" /></a>
 
 ### Data &amp; Caching
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" title="PostgreSQL" alt="PostgreSQL" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/dapper.png" title="Dapper" alt="Dapper" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/efcore.svg" title="Entity Framework Core" alt="EF Core" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" title="Redis" alt="Redis" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/fusioncache.png" title="FusionCache" alt="FusionCache" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg" title="Elasticsearch" alt="Elasticsearch" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/meilisearch.svg" title="Meilisearch" alt="Meilisearch" width="48" height="48" />
+<a href="https://www.postgresql.org/" title="PostgreSQL"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://github.com/DapperLib/Dapper" title="Dapper"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/dapper.png" alt="Dapper" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://learn.microsoft.com/en-us/ef/core/" title="Entity Framework Core"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/efcore.svg" alt="EF Core" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://redis.io/" title="Redis"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://github.com/ZiggyCreatures/FusionCache" title="FusionCache"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/fusioncache.png" alt="FusionCache" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://www.elastic.co/elasticsearch" title="Elasticsearch"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg" alt="Elasticsearch" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://www.meilisearch.com/" title="Meilisearch"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/meilisearch.svg" alt="Meilisearch" width="48" height="48" /></a>
 
 ### Messaging &amp; Background Work
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg" title="RabbitMQ" alt="RabbitMQ" width="48" height="48" />&nbsp;&nbsp;
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-light.svg" /><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-dark.svg" title="Apache Kafka" alt="Apache Kafka" width="48" height="48" /></picture>&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/masstransit.png" title="MassTransit" alt="MassTransit" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/wolverine.png" title="Wolverine" alt="Wolverine" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/hangfire.png" title="Hangfire" alt="Hangfire" width="48" height="48" />
+<a href="https://www.rabbitmq.com/" title="RabbitMQ"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg" alt="RabbitMQ" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://kafka.apache.org/" title="Apache Kafka"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-light.svg" /><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-dark.svg" alt="Apache Kafka" width="48" height="48" /></picture></a>&nbsp;&nbsp;
+<a href="https://masstransit.io/" title="MassTransit"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/masstransit.png" alt="MassTransit" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://wolverinefx.net/" title="Wolverine"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/wolverine.png" alt="Wolverine" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://www.hangfire.io/" title="Hangfire"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/hangfire.png" alt="Hangfire" width="48" height="48" /></a>
 
 ### Cloud, Infra &amp; Delivery
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" title="AWS" alt="AWS" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/amazon-s3.svg" title="Amazon S3" alt="Amazon S3" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/amazon-ses.svg" title="Amazon SES" alt="Amazon SES" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" title="Firebase (FCM)" alt="Firebase" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" title="Docker" alt="Docker" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" title="Kubernetes" alt="Kubernetes" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" title="Nginx" alt="Nginx" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-original.svg" title="Ubuntu Server" alt="Ubuntu Server" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg" title="Windows Server" alt="Windows Server" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" title="GitHub Actions" alt="GitHub Actions" width="48" height="48" />
+<a href="https://aws.amazon.com/" title="AWS"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://aws.amazon.com/s3/" title="Amazon S3"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/amazon-s3.svg" alt="Amazon S3" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://aws.amazon.com/ses/" title="Amazon SES"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/amazon-ses.svg" alt="Amazon SES" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://firebase.google.com/" title="Firebase (FCM)"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://www.docker.com/" title="Docker"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://kubernetes.io/" title="Kubernetes"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" alt="Kubernetes" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://nginx.org/" title="Nginx"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://ubuntu.com/server" title="Ubuntu Server"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-original.svg" alt="Ubuntu Server" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://learn.microsoft.com/en-us/windows-server/" title="Windows Server"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg" alt="Windows Server" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://github.com/features/actions" title="GitHub Actions"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" alt="GitHub Actions" width="48" height="48" /></a>
 
 ### Observability
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opentelemetry/opentelemetry-original.svg" title="OpenTelemetry" alt="OpenTelemetry" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" title="Grafana" alt="Grafana" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" title="Prometheus" alt="Prometheus" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jaegertracing/jaegertracing-original.svg" title="Jaeger" alt="Jaeger" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/serilog.png" title="Serilog" alt="Serilog" width="48" height="48" />
+<a href="https://opentelemetry.io/" title="OpenTelemetry"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opentelemetry/opentelemetry-original.svg" alt="OpenTelemetry" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://grafana.com/" title="Grafana"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt="Grafana" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://prometheus.io/" title="Prometheus"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" alt="Prometheus" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://www.jaegertracing.io/" title="Jaeger"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jaegertracing/jaegertracing-original.svg" alt="Jaeger" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://serilog.net/" title="Serilog"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/serilog.png" alt="Serilog" width="48" height="48" /></a>
 
 ### AI &amp; Tooling
 
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/claude.svg" title="Claude" alt="Claude" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/graphify.svg" title="Graphify — codebases as queryable knowledge graphs" alt="Graphify" width="48" height="48" />
+<a href="https://claude.com/" title="Claude"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/claude.svg" alt="Claude" width="48" height="48" /></a>&nbsp;&nbsp;
+<a href="https://github.com/Graphify-Labs/graphify" title="Graphify — codebases as queryable knowledge graphs"><img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/graphify.svg" alt="Graphify" width="48" height="48" /></a>
 
 ### Architecture &amp; Practices
 
-<img src="https://img.shields.io/badge/Domain--Driven_Design-512BD4?style=for-the-badge" alt="DDD" />
-<img src="https://img.shields.io/badge/CQRS-512BD4?style=for-the-badge" alt="CQRS" />
-<img src="https://img.shields.io/badge/Event--Driven-512BD4?style=for-the-badge" alt="Event-Driven" />
-<img src="https://img.shields.io/badge/Clean_Architecture-512BD4?style=for-the-badge" alt="Clean Architecture" />
-<img src="https://img.shields.io/badge/Context_Engineering-512BD4?style=for-the-badge" alt="Context Engineering" />
-<img src="https://img.shields.io/badge/OpenID_Connect-F78C40?style=for-the-badge&logo=openid&logoColor=white" alt="OpenID Connect" />
+<a href="https://martinfowler.com/bliki/DomainDrivenDesign.html"><img src="https://img.shields.io/badge/Domain--Driven_Design-512BD4?style=for-the-badge" alt="DDD" /></a>
+<a href="https://martinfowler.com/bliki/CQRS.html"><img src="https://img.shields.io/badge/CQRS-512BD4?style=for-the-badge" alt="CQRS" /></a>
+<a href="https://martinfowler.com/articles/201701-event-driven.html"><img src="https://img.shields.io/badge/Event--Driven-512BD4?style=for-the-badge" alt="Event-Driven" /></a>
+<a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html"><img src="https://img.shields.io/badge/Clean_Architecture-512BD4?style=for-the-badge" alt="Clean Architecture" /></a>
+<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"><img src="https://img.shields.io/badge/Context_Engineering-512BD4?style=for-the-badge" alt="Context Engineering" /></a>
+<a href="https://openid.net/developers/how-connect-works/"><img src="https://img.shields.io/badge/OpenID_Connect-F78C40?style=for-the-badge&logo=openid&logoColor=white" alt="OpenID Connect" /></a>
 
 </div>
 
