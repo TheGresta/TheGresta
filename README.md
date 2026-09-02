@@ -46,26 +46,30 @@
 ### Data &amp; Caching
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" title="PostgreSQL" alt="PostgreSQL" width="48" height="48" />&nbsp;&nbsp;
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/dapper.png" title="Dapper" alt="Dapper" width="48" height="48" />&nbsp;&nbsp;
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/efcore.svg" title="Entity Framework Core" alt="EF Core" width="48" height="48" />&nbsp;&nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" title="Redis" alt="Redis" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg" title="Elasticsearch" alt="Elasticsearch" width="48" height="48" />
-
-<img src="https://img.shields.io/badge/Dapper-2B5B84?style=for-the-badge&logo=nuget&logoColor=white" alt="Dapper" />
-<img src="https://img.shields.io/badge/EF_Core-512BD4?style=for-the-badge&logo=nuget&logoColor=white" alt="EF Core" />
-<img src="https://img.shields.io/badge/FusionCache-7C3AED?style=for-the-badge&logo=nuget&logoColor=white" alt="FusionCache" />
-<img src="https://img.shields.io/badge/Meilisearch-FF5CAA?style=for-the-badge&logo=meilisearch&logoColor=white" alt="Meilisearch" />
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/fusioncache.png" title="FusionCache" alt="FusionCache" width="48" height="48" />&nbsp;&nbsp;
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg" title="Elasticsearch" alt="Elasticsearch" width="48" height="48" />&nbsp;&nbsp;
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/meilisearch.svg" title="Meilisearch" alt="Meilisearch" width="48" height="48" />
 
 ### Messaging &amp; Background Work
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg" title="RabbitMQ" alt="RabbitMQ" width="48" height="48" />
-
-<img src="https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=apachekafka&logoColor=white" alt="Apache Kafka" />
-<img src="https://img.shields.io/badge/MassTransit-2E7D32?style=for-the-badge&logo=nuget&logoColor=white" alt="MassTransit" />
-<img src="https://img.shields.io/badge/Wolverine-B3421A?style=for-the-badge&logo=nuget&logoColor=white" alt="Wolverine" />
-<img src="https://img.shields.io/badge/Hangfire-C62828?style=for-the-badge&logo=nuget&logoColor=white" alt="Hangfire" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg" title="RabbitMQ" alt="RabbitMQ" width="48" height="48" />&nbsp;&nbsp;
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-light.svg" />
+  <img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/kafka-dark.svg" title="Apache Kafka" alt="Apache Kafka" width="48" height="48" />
+</picture>&nbsp;&nbsp;
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/masstransit.png" title="MassTransit" alt="MassTransit" width="48" height="48" />&nbsp;&nbsp;
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/wolverine.png" title="Wolverine" alt="Wolverine" width="48" height="48" />&nbsp;&nbsp;
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/hangfire.png" title="Hangfire" alt="Hangfire" width="48" height="48" />
 
 ### Cloud, Infra &amp; Delivery
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" title="AWS — S3, SES" alt="AWS" width="48" height="48" />&nbsp;&nbsp;
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" title="AWS" alt="AWS" width="48" height="48" />&nbsp;&nbsp;
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/amazon-s3.svg" title="Amazon S3" alt="Amazon S3" width="48" height="48" />&nbsp;&nbsp;
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/amazon-ses.svg" title="Amazon SES" alt="Amazon SES" width="48" height="48" />&nbsp;&nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" title="Firebase (FCM)" alt="Firebase" width="48" height="48" />&nbsp;&nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" title="Docker" alt="Docker" width="48" height="48" />&nbsp;&nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" title="Kubernetes" alt="Kubernetes" width="48" height="48" />&nbsp;&nbsp;
@@ -74,24 +78,20 @@
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg" title="Windows Server" alt="Windows Server" width="48" height="48" />&nbsp;&nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" title="GitHub Actions" alt="GitHub Actions" width="48" height="48" />
 
-<img src="https://img.shields.io/badge/Amazon_S3-569A31?style=for-the-badge&logo=nuget&logoColor=white" alt="Amazon S3" />
-<img src="https://img.shields.io/badge/Amazon_SES-DD344C?style=for-the-badge&logo=nuget&logoColor=white" alt="Amazon SES" />
-
 ### Observability
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opentelemetry/opentelemetry-original.svg" title="OpenTelemetry" alt="OpenTelemetry" width="48" height="48" />&nbsp;&nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" title="Grafana" alt="Grafana" width="48" height="48" />&nbsp;&nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" title="Prometheus" alt="Prometheus" width="48" height="48" />&nbsp;&nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jaegertracing/jaegertracing-original.svg" title="Jaeger" alt="Jaeger" width="48" height="48" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jaegertracing/jaegertracing-original.svg" title="Jaeger" alt="Jaeger" width="48" height="48" />&nbsp;&nbsp;
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/serilog.png" title="Serilog" alt="Serilog" width="48" height="48" />
 
-<img src="https://img.shields.io/badge/Serilog-4E5B31?style=for-the-badge&logo=nuget&logoColor=white" alt="Serilog" />
+### Architecture &amp; Practices
 
-### Architecture &amp; Security
-
-<img src="https://img.shields.io/badge/Domain--Driven_Design-1F2937?style=for-the-badge" alt="DDD" />
-<img src="https://img.shields.io/badge/CQRS-1F2937?style=for-the-badge" alt="CQRS" />
-<img src="https://img.shields.io/badge/Event--Driven-1F2937?style=for-the-badge" alt="Event-Driven" />
-<img src="https://img.shields.io/badge/Clean_Architecture-1F2937?style=for-the-badge" alt="Clean Architecture" />
+<img src="https://img.shields.io/badge/Domain--Driven_Design-512BD4?style=for-the-badge" alt="DDD" />
+<img src="https://img.shields.io/badge/CQRS-512BD4?style=for-the-badge" alt="CQRS" />
+<img src="https://img.shields.io/badge/Event--Driven-512BD4?style=for-the-badge" alt="Event-Driven" />
+<img src="https://img.shields.io/badge/Clean_Architecture-512BD4?style=for-the-badge" alt="Clean Architecture" />
 <img src="https://img.shields.io/badge/OpenID_Connect-F78C40?style=for-the-badge&logo=openid&logoColor=white" alt="OpenID Connect" />
 
 </div>
