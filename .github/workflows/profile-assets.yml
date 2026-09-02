@@ -23,100 +23,6 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      # Third-party card services authenticate as themselves, so they can only ever
-      # report public repositories. This card is built here instead, using SNAKE_TOKEN,
-      # which is the only way private and organisation work can be counted.
-      - name: Build activity card
-        continue-on-error: true
-        env:
-          TOKEN: ${{ secrets.SNAKE_TOKEN || github.token }}
-          HAS_PAT: ${{ secrets.SNAKE_TOKEN != '' }}
-          USER_NAME: ${{ github.repository_owner }}
-        run: |
-          set -u
-          mkdir -p dist
-
-          read -r -d '' QUERY <<'GQL' || true
-          query($u:String!){user(login:$u){contributionsCollection{
-            totalCommitContributions
-            totalPullRequestContributions
-            totalPullRequestReviewContributions
-            totalIssueContributions
-            totalRepositoriesWithContributedCommits
-            restrictedContributionsCount
-            contributionCalendar{totalContributions}}}}
-          GQL
-
-          payload=$(jq -nc --arg q "$QUERY" --arg u "$USER_NAME" \
-                      '{query:$q,variables:{u:$u}}')
-          resp=$(curl -s --max-time 30 \
-                   -H "Authorization: bearer $TOKEN" \
-                   -H "Content-Type: application/json" \
-                   -d "$payload" https://api.github.com/graphql)
-
-          cc=$(printf '%s' "$resp" | jq -r '.data.user.contributionsCollection // empty')
-          if [ -z "$cc" ]; then
-            echo "GraphQL returned no data; the previous card is kept."
-            printf '%s' "$resp" | head -c 400
-            exit 0
-          fi
-
-          g() { printf '%s' "$cc" | jq -r "$1 // 0"; }
-          CONTRIB=$(g '.contributionCalendar.totalContributions')
-          COMMITS=$(g '.totalCommitContributions')
-          PRS=$(g '.totalPullRequestContributions')
-          REVIEWS=$(g '.totalPullRequestReviewContributions')
-          REPOS=$(g '.totalRepositoriesWithContributedCommits')
-          PRIVATE=$(g '.restrictedContributionsCount')
-
-          echo "SNAKE_TOKEN configured : $HAS_PAT"
-          echo "contributions visible  : $CONTRIB (private: $PRIVATE)"
-
-          # Whether private work is counted cannot be stated reliably:
-          # restrictedContributionsCount drops to 0 once private contributions are
-          # publicised in profile settings, even though the totals still include them,
-          # so it can confirm private work but never rule it out. Report the period
-          # covered instead, which is always true.
-          # Derived from the clock rather than queried: contributionsCollection defaults
-          # to exactly the trailing 12 months, and asking for extra fields risks the
-          # whole query erroring out and silently keeping the previous card.
-          FOOT="$(date -u -d '1 year ago' +'%b %Y') &#8211; $(date -u +'%b %Y')"
-
-          fmt() { printf '%s' "$1" | sed -E ':a;s/([0-9])([0-9]{3})($|,)/\1,\2\3/;ta'; }
-
-          # Geometry, type sizes and the border are copied from the summary-cards
-          # language card so the two sit side by side as a matched pair. The counts
-          # are balanced on the right by a badge, mirroring that card's donut.
-          render() { # 1=file 2=bg 3=stroke 4=title 5=label 6=value 7=foot
-            cat > "dist/$1" <<SVG
-          <svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" role="img" aria-label="Activity over the last 12 months: $CONTRIB contributions">
-            <rect x="1" y="1" rx="5" ry="5" width="338" height="198" fill="$2" stroke="$3" stroke-width="1"/>
-            <g font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif">
-              <text x="30" y="40" font-size="22" fill="$4">Last 12 Months</text>
-
-              <text x="30" y="76" font-size="14" fill="$5">Commits</text>
-              <text x="196" y="76" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$COMMITS")</text>
-              <text x="30" y="101" font-size="14" fill="$5">Pull requests</text>
-              <text x="196" y="101" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$PRS")</text>
-              <text x="30" y="126" font-size="14" fill="$5">Code reviews</text>
-              <text x="196" y="126" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$REVIEWS")</text>
-              <text x="30" y="151" font-size="14" fill="$5">Repositories</text>
-              <text x="196" y="151" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$REPOS")</text>
-
-              <circle cx="262" cy="97" r="45" fill="none" stroke="$4" stroke-width="6"/>
-              <text x="262" y="97" font-size="24" font-weight="600" fill="$6" text-anchor="middle">$(fmt "$CONTRIB")</text>
-              <text x="262" y="117" font-size="11" fill="$5" text-anchor="middle">contributions</text>
-
-              <text x="30" y="178" font-size="11" fill="$7">$FOOT</text>
-            </g>
-          </svg>
-          SVG
-          }
-
-          render activity-dark.svg  "#0d1117" "#2e343b" "#0366d6" "#8b949e" "#c9d1d9" "#77909c"
-          render activity-light.svg "#ffffff" "#e4e2e2" "#586e75" "#586e75" "#24292f" "#8a9ba0"
-          echo "built activity-dark.svg and activity-light.svg"
-
       # SNAKE_TOKEN (a classic PAT with `read:user` + `repo`) makes the contribution
       # calendar include private and organisation commits. Without it this falls back to
       # the ephemeral Actions token, which can only see public contributions.
@@ -166,17 +72,13 @@ jobs:
             keep_previous "$name"
           }
 
-          # The activity card is generated locally. If that step failed, carry the
-          # previous copy forward or the publish would drop it from the branch.
-          for f in activity-dark.svg activity-light.svg; do
-            [ -f "dist/$f" ] && echo "built      $f" || keep_previous "$f"
-          done
-
           cards="https://github-profile-summary-cards.vercel.app/api/cards"
           streak="https://streak-stats.demolab.com"
           capsule="https://capsule-render.vercel.app/api"
           typing="https://readme-typing-svg.demolab.com"
 
+          snapshot "$cards/stats?username=$USER_NAME&theme=github_dark" stats-dark.svg
+          snapshot "$cards/stats?username=$USER_NAME&theme=default"     stats-light.svg
           snapshot "$cards/most-commit-language?username=$USER_NAME&theme=github_dark" langs-dark.svg
           snapshot "$cards/most-commit-language?username=$USER_NAME&theme=default"     langs-light.svg
           snapshot "$streak?user=$USER_NAME&border_radius=5&background=0D1117&border=2E343B&stroke=2E343B&ring=0366D6&fire=0366D6&currStreakNum=C9D1D9&sideNums=C9D1D9&currStreakLabel=0366D6&sideLabels=77909C&dates=77909C" streak-dark.svg

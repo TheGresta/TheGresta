@@ -132,9 +132,9 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/output/activity-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/output/activity-light.svg" />
-  <img alt="Activity over the last 12 months" src="https://raw.githubusercontent.com/TheGresta/TheGresta/output/activity-dark.svg" width="47%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/output/stats-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/output/stats-light.svg" />
+  <img alt="GitHub stats" src="https://raw.githubusercontent.com/TheGresta/TheGresta/output/stats-dark.svg" width="47%" />
 </picture>
 &nbsp;
 <picture>
