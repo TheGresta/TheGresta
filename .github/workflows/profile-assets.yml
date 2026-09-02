@@ -23,6 +23,25 @@ jobs:
     timeout-minutes: 10
 
     steps:
+      # Prints how many contributions the active token can actually see. A missing or
+      # under-scoped SNAKE_TOKEN otherwise fails silently, as a near-empty snake that
+      # looks like low activity rather than a permissions problem.
+      - name: Report contribution visibility
+        continue-on-error: true
+        env:
+          TOKEN: ${{ secrets.SNAKE_TOKEN || github.token }}
+          HAS_PAT: ${{ secrets.SNAKE_TOKEN != '' }}
+          USER_NAME: ${{ github.repository_owner }}
+        run: |
+          q='{"query":"query($u:String!){user(login:$u){contributionsCollection{contributionCalendar{totalContributions}}}}","variables":{"u":"'"$USER_NAME"'"}}'
+          total=$(curl -s --max-time 25 -H "Authorization: bearer $TOKEN" \
+                    -H "Content-Type: application/json" -d "$q" \
+                    https://api.github.com/graphql \
+                  | grep -oE '"totalContributions":[0-9]+' | grep -oE '[0-9]+$')
+          echo "SNAKE_TOKEN configured : $HAS_PAT"
+          echo "contributions visible  : ${total:-unknown}"
+          echo "public-only is ~24 active days; with private included expect ~1400"
+
       # SNAKE_TOKEN (a classic PAT with `read:user` + `repo`) makes the contribution
       # calendar include private and organisation commits. Without it this falls back to
       # the ephemeral Actions token, which can only see public contributions.
