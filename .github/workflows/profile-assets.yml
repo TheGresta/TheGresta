@@ -23,24 +23,90 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      # Prints how many contributions the active token can actually see. A missing or
-      # under-scoped SNAKE_TOKEN otherwise fails silently, as a near-empty snake that
-      # looks like low activity rather than a permissions problem.
-      - name: Report contribution visibility
+      # Third-party card services authenticate as themselves, so they can only ever
+      # report public repositories. This card is built here instead, using SNAKE_TOKEN,
+      # which is the only way private and organisation work can be counted.
+      - name: Build activity card
         continue-on-error: true
         env:
           TOKEN: ${{ secrets.SNAKE_TOKEN || github.token }}
           HAS_PAT: ${{ secrets.SNAKE_TOKEN != '' }}
           USER_NAME: ${{ github.repository_owner }}
         run: |
-          q='{"query":"query($u:String!){user(login:$u){contributionsCollection{contributionCalendar{totalContributions}}}}","variables":{"u":"'"$USER_NAME"'"}}'
-          total=$(curl -s --max-time 25 -H "Authorization: bearer $TOKEN" \
-                    -H "Content-Type: application/json" -d "$q" \
-                    https://api.github.com/graphql \
-                  | grep -oE '"totalContributions":[0-9]+' | grep -oE '[0-9]+$')
+          set -u
+          mkdir -p dist
+
+          read -r -d '' QUERY <<'GQL' || true
+          query($u:String!){user(login:$u){contributionsCollection{
+            totalCommitContributions
+            totalPullRequestContributions
+            totalPullRequestReviewContributions
+            totalIssueContributions
+            totalRepositoriesWithContributedCommits
+            restrictedContributionsCount
+            contributionCalendar{totalContributions}}}}
+          GQL
+
+          payload=$(jq -nc --arg q "$QUERY" --arg u "$USER_NAME" \
+                      '{query:$q,variables:{u:$u}}')
+          resp=$(curl -s --max-time 30 \
+                   -H "Authorization: bearer $TOKEN" \
+                   -H "Content-Type: application/json" \
+                   -d "$payload" https://api.github.com/graphql)
+
+          cc=$(printf '%s' "$resp" | jq -r '.data.user.contributionsCollection // empty')
+          if [ -z "$cc" ]; then
+            echo "GraphQL returned no data; the previous card is kept."
+            printf '%s' "$resp" | head -c 400
+            exit 0
+          fi
+
+          g() { printf '%s' "$cc" | jq -r "$1 // 0"; }
+          CONTRIB=$(g '.contributionCalendar.totalContributions')
+          COMMITS=$(g '.totalCommitContributions')
+          PRS=$(g '.totalPullRequestContributions')
+          REVIEWS=$(g '.totalPullRequestReviewContributions')
+          REPOS=$(g '.totalRepositoriesWithContributedCommits')
+          PRIVATE=$(g '.restrictedContributionsCount')
+
           echo "SNAKE_TOKEN configured : $HAS_PAT"
-          echo "contributions visible  : ${total:-unknown}"
-          echo "public-only is ~24 active days; with private included expect ~1400"
+          echo "contributions visible  : $CONTRIB (private: $PRIVATE)"
+
+          # A token that cannot see private work still returns a valid public-only
+          # figure, so label the card for what it actually counted.
+          if [ "$HAS_PAT" = "true" ] && [ "$PRIVATE" -gt 0 ]; then
+            FOOT="includes private &amp; organisation work"
+          else
+            FOOT="public contributions only"
+          fi
+
+          fmt() { printf '%s' "$1" | sed -E ':a;s/([0-9])([0-9]{3})($|,)/\1,\2\3/;ta'; }
+
+          render() { # 1=file 2=bg 3=stroke 4=title 5=label 6=value 7=foot
+            cat > "dist/$1" <<SVG
+          <svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" role="img" aria-label="Activity over the last 12 months">
+            <rect x="0.5" y="0.5" width="339" height="199" rx="6" fill="$2" stroke="$3"/>
+            <g font-family="Segoe UI, Ubuntu, Helvetica, Arial, sans-serif">
+              <text x="24" y="36" font-size="19" font-weight="600" fill="$4">Last 12 Months</text>
+              <text x="24" y="72" font-size="14" fill="$5">Contributions</text>
+              <text x="316" y="72" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$CONTRIB")</text>
+              <text x="24" y="97" font-size="14" fill="$5">Commits</text>
+              <text x="316" y="97" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$COMMITS")</text>
+              <text x="24" y="122" font-size="14" fill="$5">Pull requests</text>
+              <text x="316" y="122" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$PRS")</text>
+              <text x="24" y="147" font-size="14" fill="$5">Code reviews</text>
+              <text x="316" y="147" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$REVIEWS")</text>
+              <text x="24" y="172" font-size="14" fill="$5">Repositories</text>
+              <text x="316" y="172" font-size="14" font-weight="600" fill="$6" text-anchor="end">$(fmt "$REPOS")</text>
+              <text x="24" y="191" font-size="10" fill="$7">$FOOT</text>
+            </g>
+          </svg>
+          SVG
+          }
+
+          render activity-dark.svg  "#0d1117" "#2e343b" "#0366d6" "#8b949e" "#c9d1d9" "#77909c"
+          render activity-light.svg "#ffffff" "#e4e2e2" "#586e75" "#586e75" "#24292f" "#8a9ba0"
+          echo "built activity-dark.svg and activity-light.svg"
 
       # SNAKE_TOKEN (a classic PAT with `read:user` + `repo`) makes the contribution
       # calendar include private and organisation commits. Without it this falls back to
@@ -55,10 +121,10 @@ jobs:
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
       # These card services run on free hosting and go down periodically — the old
-      # github-readme-stats instance currently returns 503, and github-profile-trophy
-      # returns 402. Snapshotting the SVGs into the repo means the README renders from
-      # files we control; if a fetch fails we keep the last good copy rather than
-      # publishing a broken image.
+      # github-readme-stats instance returns 503, and github-profile-trophy returns 402.
+      # Snapshotting the SVGs into the repo means the README renders from files we
+      # control; if a fetch fails we keep the last good copy rather than publishing a
+      # broken image.
       - name: Snapshot cards and header art
         env:
           USER_NAME: ${{ github.repository_owner }}
@@ -67,6 +133,17 @@ jobs:
           set -u
           mkdir -p dist
           failed=0
+
+          keep_previous() {
+            name="$1"
+            if curl -sfL --max-time 30 \
+                 "https://raw.githubusercontent.com/$REPO/output/$name" -o "dist/$name"; then
+              echo "kept stale $name"
+            else
+              echo "MISSING    $name"
+              failed=1
+            fi
+          }
 
           snapshot() {
             url="$1"; name="$2"
@@ -77,22 +154,20 @@ jobs:
               return
             fi
             rm -f "dist/$name.tmp"
-            if curl -sfL --max-time 30 \
-                 "https://raw.githubusercontent.com/$REPO/output/$name" -o "dist/$name"; then
-              echo "kept stale $name"
-            else
-              echo "MISSING    $name"
-              failed=1
-            fi
+            keep_previous "$name"
           }
+
+          # The activity card is generated locally. If that step failed, carry the
+          # previous copy forward or the publish would drop it from the branch.
+          for f in activity-dark.svg activity-light.svg; do
+            [ -f "dist/$f" ] && echo "built      $f" || keep_previous "$f"
+          done
 
           cards="https://github-profile-summary-cards.vercel.app/api/cards"
           streak="https://streak-stats.demolab.com"
           capsule="https://capsule-render.vercel.app/api"
           typing="https://readme-typing-svg.demolab.com"
 
-          snapshot "$cards/stats?username=$USER_NAME&theme=github_dark" stats-dark.svg
-          snapshot "$cards/stats?username=$USER_NAME&theme=default"     stats-light.svg
           snapshot "$cards/most-commit-language?username=$USER_NAME&theme=github_dark" langs-dark.svg
           snapshot "$cards/most-commit-language?username=$USER_NAME&theme=default"     langs-light.svg
           snapshot "$streak?user=$USER_NAME&hide_border=true&border_radius=8&background=0D1117&stroke=2E343B&ring=0366D6&fire=0366D6&currStreakNum=8B949E&sideNums=8B949E&currStreakLabel=0366D6&sideLabels=8B949E&dates=77909C" streak-dark.svg
