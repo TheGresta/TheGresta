@@ -82,12 +82,18 @@
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jaegertracing/jaegertracing-original.svg" title="Jaeger" alt="Jaeger" width="48" height="48" />&nbsp;&nbsp;
 <img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/serilog.png" title="Serilog" alt="Serilog" width="48" height="48" />
 
+### AI &amp; Tooling
+
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/claude.svg" title="Claude" alt="Claude" width="48" height="48" />&nbsp;&nbsp;
+<img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/graphify.svg" title="Graphify — codebases as queryable knowledge graphs" alt="Graphify" width="48" height="48" />
+
 ### Architecture &amp; Practices
 
 <img src="https://img.shields.io/badge/Domain--Driven_Design-512BD4?style=for-the-badge" alt="DDD" />
 <img src="https://img.shields.io/badge/CQRS-512BD4?style=for-the-badge" alt="CQRS" />
 <img src="https://img.shields.io/badge/Event--Driven-512BD4?style=for-the-badge" alt="Event-Driven" />
 <img src="https://img.shields.io/badge/Clean_Architecture-512BD4?style=for-the-badge" alt="Clean Architecture" />
+<img src="https://img.shields.io/badge/Context_Engineering-512BD4?style=for-the-badge" alt="Context Engineering" />
 <img src="https://img.shields.io/badge/OpenID_Connect-F78C40?style=for-the-badge&logo=openid&logoColor=white" alt="OpenID Connect" />
 
 </div>
