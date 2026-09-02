@@ -67,6 +67,9 @@ jobs:
             fi
           }
 
+          # Legacy Java/C++/TypeScript/HTML from 2021-22 repos contradict the .NET-only
+          # positioning, so the card is filtered to the stack this profile claims.
+          EXCLUDE_LANGS="Java,C%2B%2B,HTML,TypeScript"
           cards="https://github-profile-summary-cards.vercel.app/api/cards"
           streak="https://streak-stats.demolab.com"
           capsule="https://capsule-render.vercel.app/api"
@@ -74,12 +77,10 @@ jobs:
 
           snapshot "$cards/stats?username=$USER_NAME&theme=github_dark" stats-dark.svg
           snapshot "$cards/stats?username=$USER_NAME&theme=default"     stats-light.svg
-          snapshot "$cards/most-commit-language?username=$USER_NAME&theme=github_dark" langs-dark.svg
-          snapshot "$cards/most-commit-language?username=$USER_NAME&theme=default"     langs-light.svg
-          snapshot "$cards/productive-time?username=$USER_NAME&theme=github_dark&utcOffset=3" productive-dark.svg
-          snapshot "$cards/productive-time?username=$USER_NAME&theme=default&utcOffset=3"     productive-light.svg
-          snapshot "$streak?user=$USER_NAME&theme=dark&hide_border=true&background=0D1117&border_radius=8" streak-dark.svg
-          snapshot "$streak?user=$USER_NAME&theme=default&hide_border=true&border_radius=8"                streak-light.svg
+          snapshot "$cards/most-commit-language?username=$USER_NAME&theme=github_dark&exclude=$EXCLUDE_LANGS" langs-dark.svg
+          snapshot "$cards/most-commit-language?username=$USER_NAME&theme=default&exclude=$EXCLUDE_LANGS"     langs-light.svg
+          snapshot "$streak?user=$USER_NAME&hide_border=true&border_radius=8&background=0D1117&stroke=2E343B&ring=0366D6&fire=0366D6&currStreakNum=8B949E&sideNums=8B949E&currStreakLabel=0366D6&sideLabels=8B949E&dates=77909C" streak-dark.svg
+          snapshot "$streak?user=$USER_NAME&hide_border=true&border_radius=8&background=FFFFFF&stroke=E4E2E2&ring=586E75&fire=586E75&currStreakNum=586E75&sideNums=586E75&currStreakLabel=586E75&sideLabels=586E75&dates=8A9BA0" streak-light.svg
 
           snapshot "$capsule?type=waving&color=0:512BD4,100:2E1065&height=180&section=header&text=Din%C3%A7er%20Din%C3%A7&fontSize=44&fontColor=ffffff&fontAlignY=34&desc=.NET%20Backend%20Engineer%20%C2%B7%20Distributed%20Systems&descAlignY=54&descSize=16" header.svg
           snapshot "$capsule?type=waving&color=0:2E1065,100:512BD4&height=120&section=footer" footer.svg

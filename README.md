@@ -149,12 +149,6 @@
   <img alt="Contribution streak" src="https://raw.githubusercontent.com/TheGresta/TheGresta/output/streak-dark.svg" width="60%" />
 </picture>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/output/productive-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/TheGresta/TheGresta/output/productive-light.svg" />
-  <img alt="Productive time" src="https://raw.githubusercontent.com/TheGresta/TheGresta/output/productive-dark.svg" width="47%" />
-</picture>
-
 <br /><br />
 
 <picture>
