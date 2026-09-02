@@ -67,9 +67,6 @@ jobs:
             fi
           }
 
-          # Legacy Java/C++/TypeScript/HTML from 2021-22 repos contradict the .NET-only
-          # positioning, so the card is filtered to the stack this profile claims.
-          EXCLUDE_LANGS="Java,C%2B%2B,HTML,TypeScript"
           cards="https://github-profile-summary-cards.vercel.app/api/cards"
           streak="https://streak-stats.demolab.com"
           capsule="https://capsule-render.vercel.app/api"
@@ -77,8 +74,8 @@ jobs:
 
           snapshot "$cards/stats?username=$USER_NAME&theme=github_dark" stats-dark.svg
           snapshot "$cards/stats?username=$USER_NAME&theme=default"     stats-light.svg
-          snapshot "$cards/most-commit-language?username=$USER_NAME&theme=github_dark&exclude=$EXCLUDE_LANGS" langs-dark.svg
-          snapshot "$cards/most-commit-language?username=$USER_NAME&theme=default&exclude=$EXCLUDE_LANGS"     langs-light.svg
+          snapshot "$cards/most-commit-language?username=$USER_NAME&theme=github_dark" langs-dark.svg
+          snapshot "$cards/most-commit-language?username=$USER_NAME&theme=default"     langs-light.svg
           snapshot "$streak?user=$USER_NAME&hide_border=true&border_radius=8&background=0D1117&stroke=2E343B&ring=0366D6&fire=0366D6&currStreakNum=8B949E&sideNums=8B949E&currStreakLabel=0366D6&sideLabels=8B949E&dates=77909C" streak-dark.svg
           snapshot "$streak?user=$USER_NAME&hide_border=true&border_radius=8&background=FFFFFF&stroke=E4E2E2&ring=586E75&fire=586E75&currStreakNum=586E75&sideNums=586E75&currStreakLabel=586E75&sideLabels=586E75&dates=8A9BA0" streak-light.svg
 
