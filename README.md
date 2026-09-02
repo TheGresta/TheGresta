@@ -17,7 +17,7 @@
 <div align="center">
   <table>
     <tr>
-      <td>🏢</td><td>Software Engineer at <b>Pesto Technology</b></td>
+      <td>🏢</td><td>Software Engineer at <b>Incodi Software Development</b></td>
       <td>🌍</td><td>Turkey</td>
     </tr>
     <tr>
