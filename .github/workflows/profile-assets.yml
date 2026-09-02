@@ -72,9 +72,10 @@ jobs:
           echo "SNAKE_TOKEN configured : $HAS_PAT"
           echo "contributions visible  : $CONTRIB (private: $PRIVATE)"
 
-          # A token that cannot see private work still returns a valid public-only
-          # figure, so label the card for what it actually counted.
-          if [ "$HAS_PAT" = "true" ] && [ "$PRIVATE" -gt 0 ]; then
+          # restrictedContributionsCount drops to 0 once private contributions are
+          # publicised in profile settings, even though the totals still include them.
+          # So it only confirms private work, it cannot rule it out; a PAT does too.
+          if [ "$HAS_PAT" = "true" ] || [ "$PRIVATE" -gt 0 ]; then
             FOOT="includes private &amp; organisation work"
           else
             FOOT="public contributions only"
