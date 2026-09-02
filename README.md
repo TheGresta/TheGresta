@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/TheGresta/TheGresta/output/typing.svg" alt="What I work with" />
+  <img src="https://raw.githubusercontent.com/TheGresta/TheGresta/main/assets/connecting-the-dots.svg" alt="Connecting the Dots" width="100%" />
 </div>
 
 <div align="center">

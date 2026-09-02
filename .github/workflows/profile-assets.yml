@@ -75,7 +75,6 @@ jobs:
           cards="https://github-profile-summary-cards.vercel.app/api/cards"
           streak="https://streak-stats.demolab.com"
           capsule="https://capsule-render.vercel.app/api"
-          typing="https://readme-typing-svg.demolab.com"
 
           snapshot "$cards/stats?username=$USER_NAME&theme=github_dark" stats-dark.svg
           snapshot "$cards/stats?username=$USER_NAME&theme=default"     stats-light.svg
@@ -86,7 +85,6 @@ jobs:
 
           snapshot "$capsule?type=waving&color=0:512BD4,100:2E1065&height=180&section=header&text=Din%C3%A7er%20Din%C3%A7&fontSize=44&fontColor=ffffff&fontAlignY=34&desc=.NET%20Backend%20Engineer%20%C2%B7%20Distributed%20Systems&descAlignY=54&descSize=16" header.svg
           snapshot "$capsule?type=waving&color=0:2E1065,100:512BD4&height=120&section=footer" footer.svg
-          snapshot "$typing?font=JetBrains+Mono&weight=600&size=20&duration=3000&pause=800&color=8B5CF6&center=true&vCenter=true&width=600&lines=.NET+10+%C2%B7+C%23+%C2%B7+ASP.NET+Core;Event-driven+services+%26+messaging;PostgreSQL+%C2%B7+Redis+%C2%B7+Elasticsearch;Docker+%C2%B7+Kubernetes+%C2%B7+AWS" typing.svg
 
           echo "--- dist ---"
           ls -l dist
