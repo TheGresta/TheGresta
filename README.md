@@ -7,8 +7,8 @@
 </div>
 
 <div align="center">
-  <a href="https://www.linkedin.com/in/mdinc"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-  <a href="mailto:mdinc.business@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+  <a href="https://www.linkedin.com/in/dincerdinc"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="mailto:dinc.dincer.business@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
   <img src="https://komarev.com/ghpvc/?username=TheGresta&style=for-the-badge&color=512BD4&label=PROFILE+VIEWS" alt="Profile views" />
 </div>
 
@@ -25,7 +25,7 @@
       <td>🧩</td><td>DDD · CQRS · event-driven</td>
     </tr>
     <tr>
-      <td>🔭</td><td colspan="3">Building <a href="https://github.com/TheGresta/platform-shared-kernel"><b>platform-shared-kernel</b></a> — the shared foundation my services sit on</td>
+      <td>🔭</td><td colspan="3">Building <a href="https://github.com/Gresta-Vertex-Labs/platform-shared-kernel"><b>platform-shared-kernel</b></a> — the shared foundation my services sit on</td>
     </tr>
   </table>
 </div>
@@ -168,8 +168,8 @@
 ---
 
 <div align="center">
-  <a href="https://www.linkedin.com/in/mdinc"><img src="https://img.shields.io/badge/Let%27s_connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-  <a href="mailto:mdinc.business@gmail.com"><img src="https://img.shields.io/badge/Say_hello-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+  <a href="https://www.linkedin.com/in/dincerdinc"><img src="https://img.shields.io/badge/Let%27s_connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="mailto:dinc.dincer.business@gmail.com"><img src="https://img.shields.io/badge/Say_hello-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
 </div>
 
 <div align="center">
